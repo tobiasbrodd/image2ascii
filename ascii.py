@@ -1,5 +1,5 @@
 from getopt import getopt, GetoptError
-from PIL import Image
+from PIL import Image, ImageFont
 import sys
 
 from enum import Enum
@@ -21,9 +21,14 @@ def get_image(path):
 
 
 def resize(image, new_width=100):
+    font = ImageFont.load_default()
+    font_width = font.getsize("x")[0]
+    font_height = font.getsize("x")[1]
+    font_ratio = font_height / font_width
+
     (width, height) = image.size
     aspect_ratio = float(height) / float(width)
-    new_height = int(aspect_ratio * new_width / 2)
+    new_height = int(aspect_ratio * new_width / font_ratio)
     dim = (new_width, new_height)
 
     return image.resize(dim)
