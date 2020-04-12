@@ -1,8 +1,7 @@
 from getopt import getopt, GetoptError
 from PIL import Image, ImageFont
-import sys
-
 from enum import Enum
+import sys
 
 
 class Scale(Enum):
